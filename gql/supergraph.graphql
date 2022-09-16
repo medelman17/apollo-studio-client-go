@@ -1,0 +1,32 @@
+mutation CreateService($accountId: ID!, $newServiceId: ID!, $name: String, $onboardingArchitecture: OnboardingArchitecture) {
+    newService(accountId: $accountId, id: $newServiceId, name: $name, onboardingArchitecture: $onboardingArchitecture) {
+        id
+        apiKeys {
+            token
+        }
+    }
+}
+
+mutation DeleteService($serviceId: ID!) {
+    service(id: $serviceId) {
+        delete
+    }
+}
+
+mutation NewKey($serviceId: ID!, $keyName: String, $role: UserPermission!) {
+    service(id: $serviceId) {
+        newKey(keyName: $keyName, role: $role) {
+            createdAt
+            id
+            keyName
+            role
+            token
+        }
+    }
+}
+
+mutation RemoveKey($serviceId: ID!, $removeKeyId: ID) {
+    service(id: $serviceId) {
+        removeKey(id: $removeKeyId)
+    }
+}

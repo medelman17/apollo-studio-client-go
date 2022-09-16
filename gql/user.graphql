@@ -1,0 +1,12 @@
+query GetCallerMemberships {
+    me {
+        ... on User {
+            memberships {
+                permission
+                account {
+                    id
+                }
+            }
+        }
+    }
+}
